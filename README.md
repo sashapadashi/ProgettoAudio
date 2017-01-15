@@ -17,4 +17,7 @@ Nel ciclo interno con delta_k definiamo un range in cui prendere i frame intorno
 Poi cerchiamo il valore massimo nel vettore buffer per individuare l'indice del frame più simile a quello non scalato.
 Individuato il frame, lo modelliamo con una finestra di Hanning (per pesarlo) e lo sommiamo al vettore output.
 
+Nel caso in cui sFactor (scaling factor) sia minore di 1, l'algoritmo sopra descritto creava una traccia rallentata ma la troncava alla durata del file in ingresso. Per rimediare abbiamo fatto la correlazione con il frame precedente a quello sotto analisi invece del frame non scalato, altrimenti alla metà del file in uscita non avremmo potuto fare la correlazione con nessun frame perchè il frame in ingresso era giunto al termine.
+Il risultato è accettabile.
+
 La traccia viene riprodotta e salvata in un file chiamato 'track.wav'.
